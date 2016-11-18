@@ -8,9 +8,9 @@ module.exports = (app) => {
             database: 'casadocodigo_nodejs'
         });
 
-        connection.query('select * from livros', (error, result) => {
+        connection.query('select * from livros', (error, results) => {
             console.log(error);
-            res.send(result);
+            res.render('produtos/lista',{lista:results});
         });
         connection.end();
         //res.render("produtos/lista");

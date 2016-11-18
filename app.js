@@ -1,12 +1,10 @@
-let express = require('express');
+var app = require('./config/express')();
 
-let app = express();
-
-app.get('/produtos', (req, res) => {
-    res.send('<html><body><h1>Listagem de produtos</h1></dody></html>');
+app.get('/produtos',(req,res) => {
+    console.log('listando...');
+    res.render("produtos/lista");
 });
 
 app.listen(3000, () => {
-    console.log('servidor rodando');
-    
-})
+    console.log("servidor rodando");
+});

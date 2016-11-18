@@ -1,9 +1,5 @@
 var app = require('./config/express')();
-
-app.get('/produtos',(req,res) => {
-    console.log('listando...');
-    res.render("produtos/lista");
-});
+var rotasProdutos = require('./app/route/produtos')(app);
 
 app.listen(3000, () => {
     console.log("servidor rodando");

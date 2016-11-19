@@ -1,12 +1,10 @@
-let mysql = require('mysql');
+
+let connectionFactory = require('../infra/connectionFactory');
+
 module.exports = (app) => {
     app.get('/produtos', (req, res) => {
-        let connection = mysql.createConnection({
-            host:'localhost',
-            user:'root',
-            password:'root',
-            database: 'casadocodigo_nodejs'
-        });
+        
+        let connection = connectionFactory();
 
         connection.query('select * from livros', (error, results) => {
             console.log(error);

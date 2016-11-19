@@ -10,4 +10,17 @@ module.exports = function(app) {
         });
         connection.end();
     });
+
+    app.get('/produtos/form', (req, res) => {
+        res.render('produtos/form');
+    });
+
+    app.post('/produtos/salva', (req, res) => {
+        let produto = req.body;
+        let connection = app.infra.connectionFactory();
+        let produtoDAO = new app.infra.ProdutoDAO(connection);
+        produtoDAO.salva(produto, (error, resultados) => {
+            res.redirect('/produtos');
+        }) 
+    });
 }

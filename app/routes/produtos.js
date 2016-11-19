@@ -3,9 +3,9 @@ module.exports = function(app) {
     app.get('/produtos', function(req, res) {
         
         let connection = app.infra.connectionFactory();
-        let produtoDAO = app.infra.produtoDAO;
+        let produtoDAO = new app.infra.ProdutoDAO(connection);
 
-        produtoDAO.lista(connection, (error, resultados) => {
+        produtoDAO.lista((error, resultados) => {
             res.render('produtos/lista',{lista:resultados});
         });
         connection.end();

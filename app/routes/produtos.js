@@ -1,14 +1,13 @@
 
-module.exports = (app) => {
-    app.get('/produtos', (req, res) => {
+module.exports = function(app) {
+    app.get('/produtos', function(req, res) {
         
         let connection = app.infra.connectionFactory();
+        let produtoDAO = app.infra.produtoDAO;
 
-        connection.query('select * from livros', (error, results) => {
-            console.log(error);
-            res.render('produtos/lista',{lista:results});
+        produtoDAO.lista(connection, (error, resultados) => {
+            res.render('produtos/lista',{lista:resultados});
         });
         connection.end();
-        //res.render("produtos/lista");
     });
 }

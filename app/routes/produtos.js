@@ -6,7 +6,14 @@ module.exports = function(app) {
         let produtoDAO = new app.infra.ProdutoDAO(connection);
 
         produtoDAO.lista((error, resultados) => {
-            res.render('produtos/lista',{lista:resultados});
+            res.format({
+                html: () => {
+                    res.render('produtos/lista',{lista:resultados});
+                },
+                json: () => {
+                    res.json(resultados);
+                }
+            })
         });
         connection.end();
     });
@@ -15,7 +22,7 @@ module.exports = function(app) {
         res.render('produtos/form');
     });
 
-    app.post('/produtos/salva', (req, res) => {
+    app.post('/produtos', (req, res) => {
         let produto = req.body;
         let connection = app.infra.connectionFactory();
         let produtoDAO = new app.infra.ProdutoDAO(connection);

@@ -12,10 +12,13 @@ var configuracoes = {
 
 client = http.request(configuracoes, (res) => {
     console.log(res.statusCode);
+    res.on('data', (body) => {
+        console.log('Corpo: ' + body);        
+    })
 });
 
 let produto = {
-    titulo:'mais sobre node',
+    titulo:'',
     descricao:'nome, javascript e um pouco de http',
     preco:50
 }

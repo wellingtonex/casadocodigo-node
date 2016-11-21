@@ -19,3 +19,5 @@ ProdutosDAO.prototype.salva = function (produto, callback) {
     this._connection.query('insert into produtos (titulo, preco, descricao) values (?, ?, ?)',  [produto.titulo, produto.preco, produto.descricao], callback);
 }
 
+npm install express-validator --save
+

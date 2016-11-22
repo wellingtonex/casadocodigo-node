@@ -1,4 +1,5 @@
 let http = require('http');
+let assert = require('assert');
 describe('#ProdutosController', () => {
     it('#listagem json', (done) => {
 
@@ -12,15 +13,9 @@ describe('#ProdutosController', () => {
         };
 
         http.get(configuracoes, (res) => {
-            if(res.statusCode === 200) {
-                console.log('status ok');
-                
-            }
-            console.log(res.headers['content-type']);
-            
-            if(res.headers['content-type'] === 'application/json; charset=utf-8') {
-                console.log('content-type ok');
-            }
+
+            assert.equal(res.statusCode, 200);
+            assert.equal(res.headers['content-type'], 'application/json; charset=utf-8');
             done();
         });
 

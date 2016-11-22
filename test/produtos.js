@@ -1,25 +1,25 @@
-let http = require('http');
+let express = require('../config/express')();
+let request = require('supertest')(express);
 let assert = require('assert');
 describe('#ProdutosController', () => {
     it('#listagem json', (done) => {
 
-        var configuracoes = {
-            hostname: 'localhost',
-            port: 3000,
-            path: '/produtos',
-            headers: {
-                'Accept': 'application/json'
-            }
-        };
+        request.get('/produtos')
+        .set('Accept', 'application/json')
+        .expect('Content-type', /json/)
+        .expect(200, done());
 
-        http.get(configuracoes, (res) => {
+    });
 
-            assert.equal(res.statusCode, 200);
-            assert.equal(res.headers['content-type'], 'application/json; charset=utf-8');
-            done();
-        });
+    it('#cadastro de novos produtos com produto com dados invalidos', (done) => {
+        request.post('/produtos')
+        .send({titulo:'', descricao:'novo livro'})
+        .expect(400, done);
+    });
 
-        
-
+    it('#cadastro de novos produtos com produto com dados validos', (done) => {
+        request.post('/produtos')
+        .send({titulo:'titulo novo produto', descricao:'descricao novo livro', preco:10.50})
+        .expect(302, done);
     });
 });

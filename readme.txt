@@ -21,3 +21,5 @@ ProdutosDAO.prototype.salva = function (produto, callback) {
 
 npm install express-validator --save
 
+npm install mocha --save-dev
+

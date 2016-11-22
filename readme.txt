@@ -23,3 +23,7 @@ npm install express-validator --save
 
 npm install mocha --save-dev
 
+npm install supertest --save-dev
+
+node-database-clener (biblioteca que auxilia na limpesa de toda uma base de dados);
+

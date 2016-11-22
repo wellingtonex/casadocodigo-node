@@ -2,12 +2,27 @@ let express = require('../config/express')();
 let request = require('supertest')(express);
 let assert = require('assert');
 describe('#ProdutosController', () => {
+
+    beforeEach((done) => {
+        let connection = express.infra.connectionFactory();
+        connection.query('delete from livros', (error, result) => {
+            if(!error) {
+                done();
+            }
+        });
+    });
+
     it('#listagem json', (done) => {
 
         request.get('/produtos')
         .set('Accept', 'application/json')
+        .expect(200)
         .expect('Content-type', /json/)
-        .expect(200, done());
+        .end(function(err, res) {
+            if (err) throw err;
+            console.log(res.body.result);
+            done();
+        });
 
     });
 

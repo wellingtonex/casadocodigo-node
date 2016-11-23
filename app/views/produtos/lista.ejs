@@ -1,0 +1,22 @@
+<html>
+<body>
+    <table>
+        <tr>
+            <td>id</td>
+            <td>titulo</td>
+            <td>descricao</td>
+            <td>preco</td>
+        </tr>
+        
+        <% lista.forEach(function(livro) { %>
+            <tr>
+                <td><%=livro.id %></td>
+                <td><%=livro.titulo %></td>
+                <td><%=livro.descricao %></td>
+                <td><%=livro.preco %></td>
+            </tr>    
+        <% }); %>            
+        
+    </table>
+</body>
+</html>

@@ -1,12 +1,10 @@
-let express = require('express');
+var app = require('./config/express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-let app = express();
+app.set('io',io);
 
-app.get('/produtos', (req, res) => {
-    res.send('<html><body><h1>Listagem de produtos</h1></dody></html>');
+var porta = process.env.PORT || 3000;
+http.listen(porta, () => {
+    console.log("servidor rodando");
 });
-
-app.listen(3000, () => {
-    console.log('servidor rodando');
-    
-})

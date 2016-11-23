@@ -29,3 +29,7 @@ node-database-clener (biblioteca que auxilia na limpesa de toda uma base de dado
 
 sudo npm install socket.io —save
 
+deploy: https://www.digitalocean.com/, 
+https://www.heroku.com/, https://devcenter.heroku.com/articles/heroku-command-line
+http://w2.cleardb.net/
+

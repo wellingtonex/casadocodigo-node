@@ -29,7 +29,7 @@ module.exports = () => {
         if (process.env.NODE_ENV === 'production') {
             res.status(500).render('erros/500');
             return;
-        }        
+        }
         next(error);
     });
 
